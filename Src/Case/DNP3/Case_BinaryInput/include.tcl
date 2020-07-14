@@ -10,6 +10,7 @@ variable TMW_DIR_Lib_DNP3_BinaryInput "$TMW_DIR_Lib_DNP3\\Lib_BinaryInput"
 
 
 source "$TMW_DIR_Lib_DNP3_Common\\setMS.tcl"
+source "$TMW_DIR_Lib_DNP3_Common\\setDNP3Rules.tcl"
 source "$TMW_DIR_Lib_DNP3_BinaryInput\\setBISdnpDB.tcl"
 
 ####################################Lib_Public####################################
