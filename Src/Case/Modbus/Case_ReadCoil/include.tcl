@@ -11,7 +11,11 @@ variable TMW_DIR_Lib_Modbus_Common "$TMW_DIR_Lib_Modbus\\Lib_Common"
 
 source "$TMW_DIR_Lib_Modbus_ReadCoil\\setCoilDB.tcl"
 source "$TMW_DIR_Lib_Modbus_Common\\setMS.tcl"
+source "$TMW_DIR_Lib_Modbus_Common\\setModbusRules.tcl"
 
 ####################################Lib_Public####################################
 variable TMW_DIR_Lib_Public "$TMW_DIR_Lib\\Public"
 variable TMW_DIR_Lib_Public_Excel "$TMW_DIR_Lib_Public\\Excel"
+variable TMW_DIR_Lib_Public_DUT "$TMW_DIR_Lib_Public\\DUT"
+
+source "$TMW_DIR_Lib_Public_DUT\\setDUTNetwork.tcl"
