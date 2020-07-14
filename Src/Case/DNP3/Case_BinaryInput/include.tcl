@@ -16,3 +16,6 @@ source "$TMW_DIR_Lib_DNP3_BinaryInput\\setBISdnpDB.tcl"
 ####################################Lib_Public####################################
 variable TMW_DIR_Lib_Public "$TMW_DIR_Lib\\Public"
 variable TMW_DIR_Lib_Public_Excel "$TMW_DIR_Lib_Public\\Excel"
+variable TMW_DIR_Lib_Public_DUT "$TMW_DIR_Lib_Public\\DUT"
+
+source "$TMW_DIR_Lib_Public_DUT\\setDUTNetwork.tcl"
