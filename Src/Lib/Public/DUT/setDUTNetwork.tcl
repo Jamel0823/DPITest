@@ -1,0 +1,7 @@
+proc setInterfaceLan {} {
+
+}
+
+proc setInterfaceWan {} {
+
+}
