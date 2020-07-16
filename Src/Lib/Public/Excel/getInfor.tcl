@@ -39,7 +39,7 @@ proc Run_getInfor {} {
   }
   $excelApp Quit
 
-  set filename "$TMW_DIR_Current\\test.txt"
+  set filename "$TMW_DIR_Current\\..\\..\\..\\Input\\Run.txt"
   set fileID [open $filename "w"]
 
   puts -nonewline $fileID $runlist

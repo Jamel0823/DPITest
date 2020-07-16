@@ -23,9 +23,9 @@ variable TMW_DIR_DPI "$TMW_DIR_Current\\DPITest"
 
 # variable TMW_DIR_Suite_DNP3 "C:\\Users\\user\\PycharmProjects\\DnpTest\\Src\\Suite\\DNP3\\include.tcl"
 variable TMW_DIR_Src "$TMW_DIR_DPI\\Src"
-variable TMW_DIR_Suite "$TMW_DIR_Src\\Suite"
-variable TMW_DIR_Suite_DNP3 "$TMW_DIR_Suite\\DNP3"
-variable TMW_DIR_Suite_Modbus "$TMW_DIR_Suite\\Modbus"
+variable TMW_DIR_FullTest "$TMW_DIR_Src\\FullTest"
+variable TMW_DIR_FullTest_DNP3 "$TMW_DIR_FullTest\\DNP3"
+variable TMW_DIR_FullTest_Modbus "$TMW_DIR_FullTest\\Modbus"
 
 
 # puts "$TMW_DIR_Suite_DNP3\\include.tcl"
@@ -35,20 +35,20 @@ if {[tmwlicense validate dnp]} {
 	# dnp
 	# source "C:\\Users\\user\\PycharmProjects\\DnpTest\\Src\\Suite\\DNP3\\include.tcl"
 	# source "C:\\Users\\user\\PycharmProjects\\DnpTest\\Src\\Suite\\Modbus\\include.tcl"
-	source "$TMW_DIR_Suite_DNP3\\include.tcl"
+	source "$TMW_DIR_FullTest_DNP3\\include.tcl"
 	# source "$TMW_DIR_Suite_DNP3\\include.tcl"
 	# source "$TMW_DIR_Suite_Modbus\\include.tcl"
 
 } elseif {[tmwlicense validate modbus]} {
 	# modbus
 	# source "C:\\Users\\user\\PycharmProjects\\DnpTest\\Src\\Suite\\Modbus\\include.tcl"
-	source "$TMW_DIR_Suite_Modbus\\include.tcl"
+	source "$TMW_DIR_FullTest_Modbus\\include.tcl"
 } else {
 	tmwlog insert "\nLicensed dismatch"
 }
 
 
-set fp [open "$TMW_DIR_Src\\Lib\\Public\\Excel\\test.txt" r]
+set fp [open "$TMW_DIR_Src\\Input\\Run.txt" r]
 set file_data [read $fp]
 # puts $file_data
 close $fp
