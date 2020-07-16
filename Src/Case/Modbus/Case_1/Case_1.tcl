@@ -1,4 +1,4 @@
 
-proc Run_Test_ReadCoil {} {
+proc Run_Test_Case_1 {} {
 
 }

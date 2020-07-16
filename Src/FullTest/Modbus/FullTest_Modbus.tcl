@@ -1,4 +1,4 @@
-proc Run_Test_Suite_Modbus {} {
+proc Run_FullTest_Modbus {} {
 
 }
 
