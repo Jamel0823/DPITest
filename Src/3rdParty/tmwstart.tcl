@@ -34,7 +34,7 @@ if {[tmwlicense validate dnp]} {
 	# source "C:\\Users\\user\\PycharmProjects\\DnpTest\\Src\\Suite\\DNP3\\include.tcl"
 	# source "C:\\Users\\user\\PycharmProjects\\DnpTest\\Src\\Suite\\Modbus\\include.tcl"
 	source "$TMW_DIR_FullTest_DNP3\\include.tcl"
-	source "$TMW_DIR_Suite_Modbus\\include.tcl"
+	source "$TMW_DIR_FullTest_Modbus\\include.tcl"
 	# source "$TMW_DIR_Suite_DNP3\\include.tcl"
 
 
