@@ -110,6 +110,6 @@ appendParatoTXT(testCase, testPara)
 # str = str[0:-8]
 # os.chdir(str + "\Src\Lib\Public\Excel")
 # os.system("tclsh .\getInfor.tcl")
-# os.system(r'"C:\Program Files\Triangle MicroWorks\Protocol Test Harness\bin\tmwtest.exe"')
+os.system(r'"C:\Program Files\Triangle MicroWorks\Protocol Test Harness\bin\tmwtest.exe"')
 
 

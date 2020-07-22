@@ -2,22 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="92aa051c-1984-4846-9071-b331baf2ce39" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Run.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Run.xlsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Src/3rdParty/tmwstart.tcl" beforeDir="false" afterPath="$PROJECT_DIR$/Src/3rdParty/tmwstart.tcl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/Case/DNP3/Case_1/Case_1.tcl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/Case/DNP3/Case_1/include.tcl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/Case/DNP3/Case_2/Case_2.tcl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/Case/DNP3/Case_2/include.tcl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/Case/Modbus/Case_1/Case_1.tcl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/Case/Modbus/Case_1/include.tcl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/FullTest/DNP3/include.tcl" beforeDir="false" afterPath="$PROJECT_DIR$/Src/FullTest/DNP3/include.tcl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/FullTest/Modbus/include.tcl" beforeDir="false" afterPath="$PROJECT_DIR$/Src/FullTest/Modbus/include.tcl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/Input/Case_1.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/Input/Run.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Input/Run.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/Lib/Public/Excel/getInfor.tcl" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Lib/Public/Excel/getInfor.tcl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test.py" beforeDir="false" afterPath="$PROJECT_DIR$/Test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Src/Case/DNP3/Case_D1/Case_D1.tcl" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Case/DNP3/Case_D1/Case_D1.tcl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Src/Case/DNP3/Case_D2/Case_D2.tcl" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Case/DNP3/Case_D2/Case_D2.tcl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Src/Case/Modbus/Case_M1/Case_M1.tcl" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Case/Modbus/Case_M1/Case_M1.tcl" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

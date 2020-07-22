@@ -20,34 +20,32 @@
 
 variable TMW_DIR_Current [file dirname [info script]]
 variable TMW_DIR_DPI "$TMW_DIR_Current\\..\\..\\"
-
-# variable TMW_DIR_Suite_DNP3 "C:\\Users\\user\\PycharmProjects\\DnpTest\\Src\\Suite\\DNP3\\include.tcl"
 variable TMW_DIR_Src "$TMW_DIR_DPI\\Src"
+variable TMW_DIR_Input "$TMW_DIR_Src\\Input"
 variable TMW_DIR_FullTest "$TMW_DIR_Src\\FullTest"
 variable TMW_DIR_FullTest_DNP3 "$TMW_DIR_FullTest\\DNP3"
 variable TMW_DIR_FullTest_Modbus "$TMW_DIR_FullTest\\Modbus"
 
 
-# puts "$TMW_DIR_Suite_DNP3\\include.tcl"
 
 
-# if {[tmwlicense validate dnp]} {
-# 	# dnp
-# 	# source "C:\\Users\\user\\PycharmProjects\\DnpTest\\Src\\Suite\\DNP3\\include.tcl"
-# 	# source "C:\\Users\\user\\PycharmProjects\\DnpTest\\Src\\Suite\\Modbus\\include.tcl"
-# 	source "$TMW_DIR_FullTest_DNP3\\include.tcl"
-# 	# source "$TMW_DIR_Suite_DNP3\\include.tcl"
-# 	# source "$TMW_DIR_Suite_Modbus\\include.tcl"
-#
-# } elseif {[tmwlicense validate modbus]} {
-# 	# modbus
-# 	# source "C:\\Users\\user\\PycharmProjects\\DnpTest\\Src\\Suite\\Modbus\\include.tcl"
-# 	source "$TMW_DIR_FullTest_Modbus\\include.tcl"
-# } else {
-# 	tmwlog insert "\nLicensed dismatch"
-# }
+if {[tmwlicense validate dnp]} {
+	# dnp
+	# source "C:\\Users\\user\\PycharmProjects\\DnpTest\\Src\\Suite\\DNP3\\include.tcl"
+	# source "C:\\Users\\user\\PycharmProjects\\DnpTest\\Src\\Suite\\Modbus\\include.tcl"
+	source "$TMW_DIR_FullTest_DNP3\\include.tcl"
+	# source "$TMW_DIR_Suite_DNP3\\include.tcl"
+	# source "$TMW_DIR_Suite_Modbus\\include.tcl"
 
-set fp [open "$TMW_DIR_Src\\Input\\Run.txt" r]
+} elseif {[tmwlicense validate modbus]} {
+	# modbus
+	# source "C:\\Users\\user\\PycharmProjects\\DnpTest\\Src\\Suite\\Modbus\\include.tcl"
+	source "$TMW_DIR_FullTest_Modbus\\include.tcl"
+} else {
+	tmwlog insert "\nLicensed dismatch"
+}
+
+set fp [open "$TMW_DIR_Input\\Run.txt" r]
 set file_data [read $fp]
 # puts $file_data
 close $fp
@@ -56,6 +54,20 @@ for {set i 0} {$i < [llength $file_data]} {incr i} {
 }
 puts $runlist
 
+
+proc getCommandforRunTest {{TMW_DIR_Input} {case}} {
+	set fp [open "$TMW_DIR_Input\\$case.txt" r]
+	set file_data [read $fp]
+	set command Run_Test_$case
+	close $fp
+
+	for {set i 1} {$i < [llength $file_data]} {incr i 2} {
+		lappend paralist [lindex $file_data $i]
+			lappend command [lindex $file_data $i]
+	}
+		return $command
+}
+
 #
 for {set i 0} {$i < [llength $runlist]} {incr i} {
   for {set j 1} {$j < [llength [lindex $runlist $i]]} {incr j} {
@@ -63,8 +75,8 @@ for {set i 0} {$i < [llength $runlist]} {incr i} {
       # eval Run_FullTest_[lindex [lindex $runlist $i] 0]
       puts Run_Test_Suite_[lindex [lindex $runlist $i] 0]
     } else {
-      # eval Run_Test_[lindex [lindex $runlist $i] $j]
-      puts Run_Test_[lindex [lindex $runlist $i] $j]
+      # eval [getCommandforRunTest $TMW_DIR_Input [lindex [lindex $runlist $i] $j]]
+      puts [getCommandforRunTest $TMW_DIR_Input [lindex [lindex $runlist $i] $j]]
     }
   }
 }
