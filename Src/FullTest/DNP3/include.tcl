@@ -16,7 +16,7 @@ source "$TMW_DIR_DNP3_Case_2\\Case_D2.tcl"
 variable TMW_DIR_FullTest "$TMW_DIR_Test\\FullTest"
 variable TMW_DIR_FullTest_DNP3 "$TMW_DIR_FullTest\\DNP3"
 
-source "$TMW_DIR_FullTest_DNP3\\FullTest_DNP3.tcl"
+source "$TMW_DIR_FullTest_DNP3\\DNP3.tcl"
 
 
 ####################################Parent####################################

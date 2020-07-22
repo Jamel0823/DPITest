@@ -52,8 +52,6 @@ close $fp
 for {set i 0} {$i < [llength $file_data]} {incr i} {
 	lappend runlist [lindex $file_data $i]
 }
-puts $runlist
-
 
 proc getCommandforRunTest {{TMW_DIR_Input} {case}} {
 	set fp [open "$TMW_DIR_Input\\$case.txt" r]
@@ -72,11 +70,11 @@ proc getCommandforRunTest {{TMW_DIR_Input} {case}} {
 for {set i 0} {$i < [llength $runlist]} {incr i} {
   for {set j 1} {$j < [llength [lindex $runlist $i]]} {incr j} {
     if {[lindex [lindex $runlist $i] $j] == "All"} {
-      # eval Run_FullTest_[lindex [lindex $runlist $i] 0]
-      puts Run_Test_Suite_[lindex [lindex $runlist $i] 0]
+      eval Run_FullTest_[lindex [lindex $runlist $i] 0]
+      # puts Run_FullTest_[lindex [lindex $runlist $i] 0]
     } else {
-      # eval [getCommandforRunTest $TMW_DIR_Input [lindex [lindex $runlist $i] $j]]
-      puts [getCommandforRunTest $TMW_DIR_Input [lindex [lindex $runlist $i] $j]]
+      eval [getCommandforRunTest $TMW_DIR_Input [lindex [lindex $runlist $i] $j]]
+      # puts [getCommandforRunTest $TMW_DIR_Input [lindex [lindex $runlist $i] $j]]
     }
   }
 }

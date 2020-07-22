@@ -15,7 +15,7 @@ source "$TMW_DIR_Lib_Modbus_Case_1\\Case_M1.tcl"
 variable TMW_DIR_FullTest "$TMW_DIR_Test\\FullTest"
 variable TMW_DIR_FullTest_Modbus "$TMW_DIR_FullTest\\Modbus"
 
-source "$TMW_DIR_FullTest_Modbus\\FullTest_Modbus.tcl"
+source "$TMW_DIR_FullTest_Modbus\\Modbus.tcl"
 
 
 ####################################Parent####################################
