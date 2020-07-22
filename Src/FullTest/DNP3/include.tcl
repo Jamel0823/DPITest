@@ -19,6 +19,11 @@ variable TMW_DIR_FullTest_DNP3 "$TMW_DIR_FullTest\\DNP3"
 source "$TMW_DIR_FullTest_DNP3\\DNP3.tcl"
 
 
-####################################Parent####################################
+####################################Parent#####################################
 source "$TMW_DIR_DNP3_Case_1\\include.tcl"
 source "$TMW_DIR_DNP3_Case_2\\include.tcl"
+
+####################################Utils######################################
+
+variable TMW_DIR_Lib_Public_Utils "$TMW_DIR_Lib_Public\\Util"
+source "$TMW_DIR_Lib_Public_Utils\\util.tcl"

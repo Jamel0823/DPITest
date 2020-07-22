@@ -27,7 +27,7 @@ proc cl {} {
 	tmwlog clear
 }
 
-# rename puts _puts
+rename puts _puts
 proc puts { {x} {y ""} {z ""}} {
 	if {$z != ""} {
 		_puts $x $y $z
@@ -41,6 +41,7 @@ proc puts { {x} {y ""} {z ""}} {
 		tmwputs $x
 	}
 }
+
 
 proc removeFromTclList { listName elementName } {
 	upvar $listName list
