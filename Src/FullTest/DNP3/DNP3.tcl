@@ -1,7 +1,9 @@
 proc Run_FullTest_DNP3 {} {
   puts "Run_FullTest_DNP3"
-  
-  set output_path "C:\\Program Files\\Triangle MicroWorks\\Protocol Test Harness\\DPITest\\Src\\Output\\Run_FullTest_DNP3.txt"
+
+  global TMW_DIR_Output
+  set output_path "$TMW_DIR_Output\\Run_FullTest_DNP3.txt"
+
   Run_Test_Case_D1 1 1 1
   Run_Test_Case_D2 1 2 3
 
