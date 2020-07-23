@@ -1,3 +1,3 @@
 proc setBinayInputFilter {} {
-
+  puts "setBinayInputFilter"
 }
