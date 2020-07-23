@@ -23,6 +23,7 @@ variable TMW_DIR_Current [file dirname [info script]]
 variable TMW_DIR_DPI "$TMW_DIR_Current\\..\\..\\"
 variable TMW_DIR_Src "$TMW_DIR_DPI\\Src"
 variable TMW_DIR_Input "$TMW_DIR_Src\\Input"
+variable TMW_DIR_Output "$TMW_DIR_Src\\Output"
 variable TMW_DIR_FullTest "$TMW_DIR_Src\\FullTest"
 variable TMW_DIR_FullTest_DNP3 "$TMW_DIR_FullTest\\DNP3"
 variable TMW_DIR_FullTest_Modbus "$TMW_DIR_FullTest\\Modbus"
