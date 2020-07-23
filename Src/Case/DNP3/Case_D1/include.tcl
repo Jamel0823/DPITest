@@ -1,7 +1,6 @@
-variable TMW_DIR_LibTMW [file dirname [info script]]
+global TMW_DIR_Src
 
-variable TMW_DIR_Test "$TMW_DIR_LibTMW\\..\\..\\..\\"
-variable TMW_DIR_Lib "$TMW_DIR_Test\\Lib"
+variable TMW_DIR_Lib "$TMW_DIR_Src\\Lib"
 variable TMW_DIR_Lib_Public "$TMW_DIR_Lib\\Public"
 
 ####################################Lib_DNP3####################################
