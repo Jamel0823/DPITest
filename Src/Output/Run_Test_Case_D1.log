@@ -1,2 +1,18 @@
-[Jul 27 14:43:56.939][MOXA]openmbmaster, openmbslave
-[Jul 27 14:43:57.126][MOXA]openmbmaster, openmbslave
+[Jul 27 15:14:49.489][MOXA]|---------------------------------------------------------------------|
+[Jul 27 15:14:49.489][MOXA]|ID: Run_Test_Case_D1                                                 |
+[Jul 27 15:14:49.489][MOXA]|Title: Check DNP3 function case 1: Read Binary Input                 |
+[Jul 27 15:14:49.489][MOXA]|Purpose: Test DNP3 function case 1 to be filtered by DNP3 FW         |
+[Jul 27 15:14:49.504][MOXA]|DNP3 Master should recevied correct response.                        |
+[Jul 27 15:14:49.504][MOXA]|Description:                                                         |
+[Jul 27 15:14:49.504][MOXA]|   N/A                                                               |
+[Jul 27 15:14:49.504][MOXA]|---------------------------------------------------------------------|
+[Jul 27 15:14:49.832][MOXA]Step1 openmbmaster 192.168.127.49, openmbslave
+[Jul 27 15:14:50.035][MOXA]|---------------------------------------------------------------------|
+[Jul 27 15:14:50.035][MOXA]|ID: Run_Test_Case_D1                                                 |
+[Jul 27 15:14:50.035][MOXA]|Title: Check DNP3 function case 1: Read Binary Input                 |
+[Jul 27 15:14:50.035][MOXA]|Purpose: Test DNP3 function case 1 to be filtered by DNP3 FW         |
+[Jul 27 15:14:50.051][MOXA]|DNP3 Master should recevied correct response.                        |
+[Jul 27 15:14:50.051][MOXA]|Description:                                                         |
+[Jul 27 15:14:50.051][MOXA]|   N/A                                                               |
+[Jul 27 15:14:50.051][MOXA]|---------------------------------------------------------------------|
+[Jul 27 15:14:50.067][MOXA]Step1 openmbmaster 192.168.127.49, openmbslave

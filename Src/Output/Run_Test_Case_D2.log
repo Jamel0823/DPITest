@@ -1,2 +1,18 @@
-[Jul 27 14:43:57.111][MOXA]openmbmaster, openmbslave
-[Jul 27 14:43:57.329][MOXA]openmbmaster, openmbslave
+[Jul 27 15:14:49.832][MOXA]|---------------------------------------------------------------------|
+[Jul 27 15:14:49.832][MOXA]|ID: Run_Test_Case_D2                                                 |
+[Jul 27 15:14:49.848][MOXA]|Title: Check DNP3 function case 2: Read Binary Input                 |
+[Jul 27 15:14:49.848][MOXA]|Purpose: Test DNP3 function case 2 to be filtered by DNP3 FW         |
+[Jul 27 15:14:49.848][MOXA]|DNP3 Master should recevied correct response.                        |
+[Jul 27 15:14:49.848][MOXA]|Description:                                                         |
+[Jul 27 15:14:49.848][MOXA]|   N/A                                                               |
+[Jul 27 15:14:49.864][MOXA]|---------------------------------------------------------------------|
+[Jul 27 15:14:50.020][MOXA]closednpmaster, closednpslave
+[Jul 27 15:14:50.067][MOXA]|---------------------------------------------------------------------|
+[Jul 27 15:14:50.082][MOXA]|ID: Run_Test_Case_D2                                                 |
+[Jul 27 15:14:50.082][MOXA]|Title: Check DNP3 function case 2: Read Binary Input                 |
+[Jul 27 15:14:50.082][MOXA]|Purpose: Test DNP3 function case 2 to be filtered by DNP3 FW         |
+[Jul 27 15:14:50.082][MOXA]|DNP3 Master should recevied correct response.                        |
+[Jul 27 15:14:50.098][MOXA]|Description:                                                         |
+[Jul 27 15:14:50.098][MOXA]|   N/A                                                               |
+[Jul 27 15:14:50.098][MOXA]|---------------------------------------------------------------------|
+[Jul 27 15:14:50.270][MOXA]closednpmaster, closednpslave
