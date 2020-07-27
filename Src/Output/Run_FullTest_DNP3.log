@@ -1,1 +1,27 @@
-[Jul 27 14:43:57.111][MOXA]Run_Test_Case_D1, Run_Test_Case_D2
+[Jul 27 15:14:49.442][MOXA]|---------------------------------------------------------------------|
+[Jul 27 15:14:49.457][MOXA]|ID: Run_FullTest_DNP3                                                |
+[Jul 27 15:14:49.457][MOXA]|Title: Check DNP3 all function                                       |
+[Jul 27 15:14:49.457][MOXA]|Purpose: Test DNP3 all function case to be filtered by DNP3 FW       |
+[Jul 27 15:14:49.473][MOXA]|DNP3 Master should recevied correct response.                        |
+[Jul 27 15:14:49.473][MOXA]|Description:                                                         |
+[Jul 27 15:14:49.473][MOXA]|   N/A                                                               |
+[Jul 27 15:14:49.473][MOXA]|---------------------------------------------------------------------|
+[Jul 27 15:14:50.020][MOXA]Run_Test_Case_D1, Run_Test_Case_D2
+[Jul 27 15:26:42.030][MOXA]|---------------------------------------------------------------------|
+[Jul 27 15:26:42.046][MOXA]|ID: Run_FullTest_DNP3                                                |
+[Jul 27 15:26:42.046][MOXA]|Title: Check DNP3 all function                                       |
+[Jul 27 15:26:42.046][MOXA]|Purpose: Test DNP3 all function case to be filtered by DNP3 FW       |
+[Jul 27 15:26:42.046][MOXA]|DNP3 Master should recevied correct response.                        |
+[Jul 27 15:26:42.062][MOXA]|Description:                                                         |
+[Jul 27 15:26:42.062][MOXA]|   N/A                                                               |
+[Jul 27 15:26:42.062][MOXA]|---------------------------------------------------------------------|
+[Jul 27 15:26:42.593][MOXA]Run_Test_Case_D1, Run_Test_Case_D2
+[Jul 27 15:26:58.514][MOXA]|---------------------------------------------------------------------|
+[Jul 27 15:26:58.529][MOXA]|ID: Run_FullTest_DNP3                                                |
+[Jul 27 15:26:58.529][MOXA]|Title: Check DNP3 all function                                       |
+[Jul 27 15:26:58.545][MOXA]|Purpose: Test DNP3 all function case to be filtered by DNP3 FW       |
+[Jul 27 15:26:58.545][MOXA]|DNP3 Master should recevied correct response.                        |
+[Jul 27 15:26:58.545][MOXA]|Description:                                                         |
+[Jul 27 15:26:58.545][MOXA]|   N/A                                                               |
+[Jul 27 15:26:58.561][MOXA]|---------------------------------------------------------------------|
+[Jul 27 15:26:59.108][MOXA]Run_Test_Case_D1, Run_Test_Case_D2
