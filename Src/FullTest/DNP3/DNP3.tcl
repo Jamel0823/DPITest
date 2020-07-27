@@ -9,6 +9,6 @@ proc Run_FullTest_DNP3 {} {
 
   set result "Run_Test_Case_D1, Run_Test_Case_D2"
 
-  setOuput $output_path
-  appendOuput $output_path $result
+  createLogFile $output_path
+  appendLogInfo $output_path $result
 }

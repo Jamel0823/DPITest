@@ -1,6 +1,6 @@
 proc Run_Test_Case_D1 {{Mip} {Sip} {Channel}} {
   puts "Run_Test_Case_D1"
-  
+
   global TMW_DIR_Output
   set output_path "$TMW_DIR_Output\\Run_Test_Case_D1.txt"
 
@@ -8,8 +8,8 @@ proc Run_Test_Case_D1 {{Mip} {Sip} {Channel}} {
   opendnpslave
 
   set result "opendnpmaster, opendnpslave"
-  setOuput $output_path
-  appendOuput $output_path $result
+  createLogFile $output_path
+  appendLogInfo $output_path $result
 
   setInterfaceLan
 }

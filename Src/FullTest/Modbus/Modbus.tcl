@@ -8,6 +8,6 @@ proc Run_FullTest_Modbus {} {
 
   set result "Run_Test_Case_M1"
 
-  setOuput $output_path
-  appendOuput $output_path $result
+  createLogFile $output_path
+  appendLogInfo $output_path $result
 }

@@ -6,6 +6,6 @@ proc Run_Test_Case_M1 {{Mip} {Sip} {Channel}} {
 
   set result "openmbmaster, openmbslave"
 
-  setOuput $output_path
-  appendOuput $output_path $result
+  createLogFile $output_path
+  appendLogInfo $output_path $result
 }
