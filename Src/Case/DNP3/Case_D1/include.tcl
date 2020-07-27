@@ -21,5 +21,5 @@ source "$TMW_DIR_Lib_DUT_Interface\\setDUTNetwork.tcl"
 source "$TMW_DIR_Lib_DUT_Firewall\\setDNP3Rules.tcl"
 
 ####################################Lib_Excel####################################
-variable TMW_DIR_Lib_Public_Excel "$TMW_DIR_Lib_Public\\Excel"
-source "$TMW_DIR_Lib_Public_Excel\\setOutput.tcl"
+variable TMW_DIR_Lib_Public_Log "$TMW_DIR_Lib_Public\\Log"
+source "$TMW_DIR_Lib_Public_Log\\Log.tcl"
