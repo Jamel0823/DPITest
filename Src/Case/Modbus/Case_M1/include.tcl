@@ -10,15 +10,14 @@ variable TMW_DIR_Lib_Modbus_Common "$TMW_DIR_Lib_Modbus\\Common"
 
 source "$TMW_DIR_Lib_Modbus_ReadCoil\\setCoilDB.tcl"
 source "$TMW_DIR_Lib_Modbus_Common\\setMS.tcl"
-source "$TMW_DIR_Lib_Modbus_Common\\setModbusRules.tcl"
 
 ####################################Lib_Public####################################
 variable TMW_DIR_Lib_DUT "$TMW_DIR_Lib\\DUT"
 variable TMW_DIR_Lib_DUT_Firewall "$TMW_DIR_Lib_DUT\\Firewall"
 variable TMW_DIR_Lib_DUT_Interface "$TMW_DIR_Lib_DUT\\Interface"
 
-source "$TMW_DIR_Lib_DUT_Interface\\setDUTNetwork.tcl"
-source "$TMW_DIR_Lib_DUT_Firewall\\setDNP3Rules.tcl"
+source "$TMW_DIR_Lib_DUT_Firewall\\setModbusRules.tcl"
+source "$TMW_DIR_Lib_DUT_Firewall\\setDUTNetwork.tcl"
 
 ####################################Lib_Excel####################################
 variable TMW_DIR_Lib_Public_Log "$TMW_DIR_Lib_Public\\Log"
