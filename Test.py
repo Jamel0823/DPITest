@@ -7,6 +7,8 @@ import xlrd
 import xlutils.copy
 from openpyxl import load_workbook
 from openpyxl.styles import Border, Side, PatternFill, Font, GradientFill, Alignment, colors
+str = os.path.abspath(__file__)
+str = str[0:-8]
 
 def getTestCaceFromExcel(file, sheet):
     wb = openpyxl.load_workbook("%s"%file)
@@ -16,13 +18,14 @@ def getTestCaceFromExcel(file, sheet):
     testCase = []
     for i in range(1, cols):
         tempItem = []
-        ce = ws.cell(row=2, column=i)
+        ce = ws.cell(row=3, column=i)
         if ce.value == "V":
             n+=1
             tempItem.append(ws.cell(row=1, column=i).value)
+            tempItem.append(ws.cell(row=2, column=i).value)
             for j in range(1,rows):
-                if ws.cell(row=2+j, column=i).value != None:
-                    tempItem.append(ws.cell(row=2+j, column=i).value)
+                if ws.cell(row=3+j, column=i).value != None:
+                    tempItem.append(ws.cell(row=3+j, column=i).value)
             testCase.append(tempItem)
     wb.close()
     return testCase
@@ -76,7 +79,7 @@ def getParaFromExcel(file, testCase):
     return para
 
 def appendCasetoTXT(testCase):
-    fp = open(".\\Src\\Input\\Run.txt", "w")
+    fp = open("%s\\Src\\Input\\Run.txt"%str, "w")
     # fp.write("%s"%testCase)
     for i in range(0, len(testCase)):
         fp.write("{")
@@ -88,29 +91,28 @@ def appendCasetoTXT(testCase):
     fp.close()
 def appendParatoTXT(testCase, testPara):
     for i in range(0, len(testCase)):
-        for j in range(1, len(testCase[i])):
+        for j in range(2, len(testCase[i])):
             print(testCase[i][j])
-            fp = open(".\\Src\\Input\\%s.txt"%testCase[i][j], "w")
+            fp = open("%s\\Src\\Input\\%s.txt"%(str, testCase[i][j]), "w")
             for m in range(0, len(testPara)):
                 if testPara[m][0] == testCase[i][j]:
                     for n in range(1, len(testPara[m])):
                         fp.write("%s\n" % testPara[m][n])
 
 
-testCase = getTestCaceFromExcel("Run.xlsx", "TestFunction")
+testCase = getTestCaceFromExcel("%s\Run.xlsx"%str, "TestFunction")
 print(testCase)
-testPara = getParaFromExcel("Run.xlsx", testCase)
+testPara = getParaFromExcel("%s\Run.xlsx"%str, testCase)
 print(testPara)
 appendCasetoTXT(testCase)
 appendParatoTXT(testCase, testPara)
 
 
-
 # str = os.path.abspath(__file__)
-# str = str[0:-8]
+
 # os.chdir(str + "\Src\Lib\Public\Excel")
 # os.system("tclsh .\getInfor.tcl")
-os.system(r'"C:\Program Files\Triangle MicroWorks\Protocol Test Harness\bin\tmwtest.exe"')
+# os.system(r'"C:\Program Files\Triangle MicroWorks\Protocol Test Harness\bin\tmwtest.exe"')
 
 
 

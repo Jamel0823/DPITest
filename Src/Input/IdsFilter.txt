@@ -1,0 +1,10 @@
+Interface
+eth1
+in_file_dir
+./../Replay/Rewrite
+TelIP
+192.168.128.100
+User
+aaron
+Pawd
+adminmoxa
