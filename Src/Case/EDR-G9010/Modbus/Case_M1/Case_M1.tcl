@@ -19,4 +19,4 @@ proc Run_Test_Case_M1 {{Mip} {Sip} {Channel} {var1}} {
   tmwlog insert "M1 porc is executed."
 }
 
-tmwlog insert "Case_M1.tcl is sourced."
+tmwlog insert "EDR-G9010 Case_M1.tcl is sourced."

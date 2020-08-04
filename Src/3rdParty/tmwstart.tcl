@@ -27,20 +27,24 @@ source "$TMW_DIR_Lib\\Public\\Util\\util.tcl"
 
 # To Parse All Folder or File.
 
-
 proc parse_folder {{folder}} {
-	set fd [glob -directory $folder *]
+	set fd [glob -tails -directory $folder *]
 	set lfd [llength $fd]
 	variable filelist ""
 	for {set i 0} {$i < $lfd} {incr i} {
 		lappend filelist [lindex $fd $i]
-		}
-		return $filelist
+	}
+	return $filelist
 }
 
 proc parse_tcl {{folder}} {
-	set fd [glob $folder .tcl]
-	tmwlog insert $fd
+	set fd [glob -tails -directory $folder *.tcl]
+	set lfd [llength $fd]
+	variable filelist ""
+	for {set i 0 } {$i < $lfd} {incr i} {
+		lappend filelist [lindex $fd $i]
+	}
+	return $filelist
 }
 
 ##########
@@ -57,9 +61,9 @@ proc auto_startup {{protocol} {dut_model} {testcase}} {
 			} else {
 				tmwlog insert "\[ OK \] Device under test: $dut_model."
 				if {[llength $testcase] == 0} {
-					tmwlog insert "\[FAIL\] Please choose testcases!"
+					tmwlog insert "\[FAIL\] Please choose test cases!"
 				} else {
-					tmwlog insert "\[ OK \] Testcases list:"
+					tmwlog insert "\[ OK \] Test cases list:"
 					for {set i 0} {$i < [llength $testcase]} {incr i} {
 						set num [expr $i + 1]
 						tmwlog insert "\[ OK \] $num. [lindex $testcase $i]"
@@ -72,7 +76,7 @@ proc auto_startup {{protocol} {dut_model} {testcase}} {
 		} elseif {$protocol == ""} {
 			tmwlog insert "\[FAIL\] Please choose a test function!"
 		} else {
-			tmwlog insert "\[FAIL\] Test functin and license dismatch!"
+			tmwlog insert "\[FAIL\] Test function and license dismatch!"
 		}
 	} elseif {[tmwlicense validate mb]} {
 		tmwlog insert "\n\[ OK \] Modbus license valid."
@@ -83,9 +87,9 @@ proc auto_startup {{protocol} {dut_model} {testcase}} {
 			} else {
 				tmwlog insert "\[ OK \] Device under test: $dut_model."
 				if {[llength $testcase] == 0} {
-					tmwlog insert "\[FAIL\] Please choose testcases!"
+					tmwlog insert "\[FAIL\] Please choose test cases!"
 				} else {
-					tmwlog insert "\[ OK \] Testcases list:"
+					tmwlog insert "\[ OK \] Test cases list:"
 					for {set i 0} {$i < [llength $testcase]} {incr i} {
 						set num [expr $i + 1]
 						tmwlog insert "\[ OK \] $num. [lindex $testcase $i]"
@@ -108,12 +112,11 @@ proc auto_startup {{protocol} {dut_model} {testcase}} {
 proc auto_srcinclude {{protocol} {dut_model}} {
 	global TMW_DIR_Case
 	variable TMW_DIR_TestCase "$TMW_DIR_Case\\$dut_model\\$protocol"
-	variable casefolderlist [parse_folder $TMW_DIR_TestCase]
-	set cflistlength [llength $casefolderlist]
+	variable cfolderlist [parse_folder $TMW_DIR_TestCase]
+	set cflistlength [llength $cfolderlist]
 	for {set i 0} {$i < $cflistlength} {incr i} {
-			set case [lindex [split [lindex $casefolderlist $i] "/"] end]
+			set case [lindex $cfolderlist $i]
 			source "$TMW_DIR_TestCase\\$case\\include.tcl"
-			tmwlog insert "$TMW_DIR_TestCase"
 	}
 }
 
@@ -145,7 +148,7 @@ proc auto_runtest {{testcases}} {
 					}
 				}
 				set testcmd "Run_Test_$case $all_paralist"
-				tmwlog insert "\[ OK \] Execute chosen test case: $testcase - $case"
+				tmwlog insert "\[ OK \] Execute test case: $testcase - $case"
 				eval $testcmd
 				# tmwlog insert $runtestcmd
 			}
@@ -158,7 +161,7 @@ proc auto_runtest {{testcases}} {
 				lappend uni_paralist [lindex $file_data $p]
 			}
 			set runtestcmd "Run_Test_$testcase $uni_paralist"
-			tmwlog insert "\[ OK \] Execute chosen test case: $testcase"
+			tmwlog insert "\[ OK \] Execute test case: $testcase"
 			eval $runtestcmd
 			# tmwlog insert $runtestcmd
 		}
@@ -184,7 +187,19 @@ proc manual_startup {} {
 
 
 proc manual_srcinclude {{protocol}} {
-	tmwlog insert "\[ OK \] Start manual test, source all!"
+	tmwlog insert "\[ OK \] Manual test, source all model's $protocol test cases."
+	global TMW_DIR_Case
+	set modellist [parse_folder $TMW_DIR_Case]
+	set mlistlength [llength $modellist]
+	for {set m 0} {$m < $mlistlength} {incr m} {
+		set model [lindex $modellist $m]
+		set caselist [parse_folder $TMW_DIR_Case\\$model\\$protocol]
+		set clistlength [llength $caselist]
+		for {set c 0} {$c < $clistlength} {incr c} {
+			set case [lindex $caselist $c]
+			source "$TMW_DIR_Case\\$model\\$protocol\\$case\\include.tcl"
+		}
+	}
 }
 
 ##########
@@ -192,8 +207,15 @@ proc manual_srcinclude {{protocol}} {
 # Developer Mode
 
 proc develop_mode {{name}} {
+	global TMW_DIR_Lib
 	if {[file exists $TMW_DIR_Lib\\Temp\\$name]} {
-		parse_tcl
+		variable devfolder "$TMW_DIR_Lib\\Temp\\$name"
+		variable devlist [parse_tcl $TMW_DIR_Lib\\Temp\\$name]
+		set dlistlength [llength $devlist]
+		for {set i 0} {$i < $dlistlength} {incr i} {
+			set dcase [lindex $devlist $i]
+			source "$TMW_DIR_Lib\\Temp\\$name\\$dcase"
+		}
 	} else {
 		tmwlog insert "\[FAIL\] No such developer!"
 	}
