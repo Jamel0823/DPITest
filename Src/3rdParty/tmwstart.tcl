@@ -13,69 +13,209 @@
 #  as desired for the target environment.
 #
 
-# set cmd [open |cmd.exe "r+"]
-# puts $cmd "D:"
-# puts $cmd "cd \\Desktop\\DNP3\\Test\\Lib\\Public\\Excel"
-# puts $cmd "tclsh .\\getInfor.tcl"
-
-
 variable TMW_DIR_Current [file dirname [info script]]
-variable TMW_DIR_DPI "$TMW_DIR_Current\\..\\..\\"
+variable TMW_DIR_DPI [file normalize "$TMW_DIR_Current\\..\\..\\"]
 variable TMW_DIR_Src "$TMW_DIR_DPI\\Src"
 variable TMW_DIR_Input "$TMW_DIR_Src\\Input"
 variable TMW_DIR_Output "$TMW_DIR_Src\\Output"
-variable TMW_DIR_FullTest "$TMW_DIR_Src\\FullTest"
-variable TMW_DIR_FullTest_DNP3 "$TMW_DIR_FullTest\\DNP3"
-variable TMW_DIR_FullTest_Modbus "$TMW_DIR_FullTest\\Modbus"
+variable TMW_DIR_Lib "$TMW_DIR_Src\\Lib"
+variable TMW_DIR_Case "$TMW_DIR_Src\\Case"
+
+source "$TMW_DIR_Lib\\Public\\Util\\util.tcl"
+
+##########
+
+# To Parse All Folder or File.
 
 
-if {[tmwlicense validate dnp]} {
-	# dnp
-	# source "C:\\Users\\user\\PycharmProjects\\DnpTest\\Src\\Suite\\DNP3\\include.tcl"
-	# source "C:\\Users\\user\\PycharmProjects\\DnpTest\\Src\\Suite\\Modbus\\include.tcl"
-	source "$TMW_DIR_FullTest_DNP3\\include.tcl"
-	# source "$TMW_DIR_FullTest_Modbus\\include.tcl"
-	# source "$TMW_DIR_Suite_DNP3\\include.tcl"
-} elseif {[tmwlicense validate mb]} {
-	# modbus
-	# source "C:\\Users\\user\\PycharmProjects\\DnpTest\\Src\\Suite\\Modbus\\include.tcl"
-	source "$TMW_DIR_FullTest_Modbus\\include.tcl"
-} else {
-	tmwlog insert "\nLicensed dismatch"
+proc parse_folder {{folder}} {
+	set fd [glob -directory $folder *]
+	set lfd [llength $fd]
+	variable filelist ""
+	for {set i 0} {$i < $lfd} {incr i} {
+		lappend filelist [lindex $fd $i]
+		}
+		return $filelist
 }
 
-##########################Get Expected Run Case#################################
-
-set fp [open "$TMW_DIR_Input\\Run.txt" r]
-set file_data [read $fp]
-# puts $file_data
-close $fp
-for {set i 0} {$i < [llength $file_data]} {incr i} {
-	lappend runlist [lindex $file_data $i]
+proc parse_tcl {{folder}} {
+	set fd [glob $folder .tcl]
+	tmwlog insert $fd
 }
 
-proc getCommandforRunTest {{TMW_DIR_Input} {case}} {
-	set fp [open "$TMW_DIR_Input\\$case.txt" r]
-	set file_data [read $fp]
-	set command Run_Test_$case
-	close $fp
+##########
 
-	for {set i 1} {$i < [llength $file_data]} {incr i 2} {
-		lappend paralist [lindex $file_data $i]
-			lappend command [lindex $file_data $i]
+# For Autotest Startup.
+
+proc auto_startup {{protocol} {dut_model} {testcase}} {
+	if {[tmwlicense validate dnp]} {
+		tmwlog insert "\n\[ OK \] DNP3 license valid."
+		if {$protocol == "DNP3"} {
+			tmwlog insert "\[ OK \] Testing fuction: $protocol."
+			if {$dut_model == "None"} {
+				tmwlog insert	"\[FAIL\] Please choose a DUT model!"
+			} else {
+				tmwlog insert "\[ OK \] Device under test: $dut_model."
+				if {[llength $testcase] == 0} {
+					tmwlog insert "\[FAIL\] Please choose testcases!"
+				} else {
+					tmwlog insert "\[ OK \] Testcases list:"
+					for {set i 0} {$i < [llength $testcase]} {incr i} {
+						set num [expr $i + 1]
+						tmwlog insert "\[ OK \] $num. [lindex $testcase $i]"
+					}
+					tmwlog insert "\[ OK \] Start auto test."
+					auto_srcinclude $protocol $dut_model
+					auto_runtest $testcase
+				}
+			}
+		} elseif {$protocol == ""} {
+			tmwlog insert "\[FAIL\] Please choose a test function!"
+		} else {
+			tmwlog insert "\[FAIL\] Test functin and license dismatch!"
+		}
+	} elseif {[tmwlicense validate mb]} {
+		tmwlog insert "\n\[ OK \] Modbus license valid."
+		if {$protocol == "Modbus"} {
+			tmwlog insert "\[ OK \] Testing function: $protocol."
+			if {$dut_model == "None"} {
+				tmwlog insert	"\[FAIL\] Please choose a DUT model!"
+			} else {
+				tmwlog insert "\[ OK \] Device under test: $dut_model."
+				if {[llength $testcase] == 0} {
+					tmwlog insert "\[FAIL\] Please choose testcases!"
+				} else {
+					tmwlog insert "\[ OK \] Testcases list:"
+					for {set i 0} {$i < [llength $testcase]} {incr i} {
+						set num [expr $i + 1]
+						tmwlog insert "\[ OK \] $num. [lindex $testcase $i]"
+					}
+					tmwlog insert "\[ OK \] Start auto test."
+					auto_srcinclude $protocol $dut_model
+					auto_runtest $testcase
+				}
+			}
+		} elseif {$protocol == ""} {
+			tmwlog insert "\[FAIL\] Please choose a test function!"
+		} else {
+			tmwlog insert "\[FAIL\] Test function and license dismatch!"
+		}
+	} else {
+		tmwlog insert "\n\[FAIL\] License invalid!"
 	}
-		return $command
 }
 
-#################################Run Test#######################################
-for {set i 0} {$i < [llength $runlist]} {incr i} {
-  for {set j 1} {$j < [llength [lindex $runlist $i]]} {incr j} {
-    if {[lindex [lindex $runlist $i] $j] == "All"} {
-      eval Run_FullTest_[lindex [lindex $runlist $i] 0]
-      # puts Run_FullTest_[lindex [lindex $runlist $i] 0]
-    } else {
-      eval [getCommandforRunTest $TMW_DIR_Input [lindex [lindex $runlist $i] $j]]
-      # puts [getCommandforRunTest $TMW_DIR_Input [lindex [lindex $runlist $i] $j]]
-    }
-  }
+proc auto_srcinclude {{protocol} {dut_model}} {
+	global TMW_DIR_Case
+	variable TMW_DIR_TestCase "$TMW_DIR_Case\\$dut_model\\$protocol"
+	variable casefolderlist [parse_folder $TMW_DIR_TestCase]
+	set cflistlength [llength $casefolderlist]
+	for {set i 0} {$i < $cflistlength} {incr i} {
+			set case [lindex [split [lindex $casefolderlist $i] "/"] end]
+			source "$TMW_DIR_TestCase\\$case\\include.tcl"
+			tmwlog insert "$TMW_DIR_TestCase"
+	}
+}
+
+proc auto_runtest {{testcases}} {
+	global TMW_DIR_Input
+	for {set i 0} {$i < [llength $testcases]} {incr i} {
+		set testcase [lindex $testcases $i]
+		if {$testcase == "All"} {
+			set fp [open "$TMW_DIR_Input\\$testcase.txt" r]
+			set file_data [read $fp]
+			close $fp
+			set caselist ""
+			set temp ""
+			for {set c 0} {$c < [llength $file_data]} {incr c} {
+				if {[regexp {Case} [lindex $file_data $c]]} {
+					if {[lindex $file_data $c] != $temp } {
+						set temp [lindex $file_data $c]
+						lappend caselist [lindex $file_data $c]
+					}
+				}
+			}
+			for {set cl 0} {$cl < [llength $caselist]} {incr cl} {
+				set case [lindex $caselist $cl]
+				set all_paralist ""
+				for {set d 0} {$d < [llength $file_data]} {incr d} {
+					set data [lindex $file_data $d]
+					if {$data == $case} {
+						lappend all_paralist [lindex $file_data [expr $d + 2]]
+					}
+				}
+				set testcmd "Run_Test_$case $all_paralist"
+				tmwlog insert "\[ OK \] Execute chosen test case: $testcase - $case"
+				eval $testcmd
+				# tmwlog insert $runtestcmd
+			}
+		} else {
+			set fp [open "$TMW_DIR_Input\\$testcase.txt" r]
+			set file_data [read $fp]
+			close $fp
+			set uni_paralist ""
+			for {set p 1} {$p < [llength $file_data]} {incr p 2} {
+				lappend uni_paralist [lindex $file_data $p]
+			}
+			set runtestcmd "Run_Test_$testcase $uni_paralist"
+			tmwlog insert "\[ OK \] Execute chosen test case: $testcase"
+			eval $runtestcmd
+			# tmwlog insert $runtestcmd
+		}
+	}
+}
+
+##########
+
+# For Manual Startup.
+
+proc manual_startup {} {
+	if {[tmwlicense validate dnp]} {
+		tmwlog insert "\n\[ OK \] DNP3 license valid!"
+		manual_srcinclude "DNP3"
+	} elseif {[tmwlicense validate mb]} {
+		tmwlog insert "\n\[ OK \] Modbus license valid!"
+		manual_srcinclude "Modbus"
+	} else {
+		tmwlog insert "\n\[FAIL\] License invalid!"
+	}
+}
+
+
+
+proc manual_srcinclude {{protocol}} {
+	tmwlog insert "\[ OK \] Start manual test, source all!"
+}
+
+##########
+
+# Developer Mode
+
+proc develop_mode {{name}} {
+	if {[file exists $TMW_DIR_Lib\\Temp\\$name]} {
+		parse_tcl
+	} else {
+		tmwlog insert "\[FAIL\] No such developer!"
+	}
+}
+
+##########
+
+# Initialize TMW.
+
+if {[file exists $TMW_DIR_Input\\Run.txt]} {
+	set fp [open "$TMW_DIR_Input\\Run.txt" r]
+	set file_data [read $fp]
+	set run_txt [lindex $file_data 0]
+	set lrun_txt [llength $run_txt]
+	set protocol [lindex $run_txt 0]
+	set dut_model [lindex $run_txt 1]
+	set testcase ""
+	for {set i 2} {$i < $lrun_txt} {incr i} {
+		lappend testcase [lindex $run_txt $i]
+	}
+	close $fp
+	auto_startup $protocol $dut_model $testcase
+} else {
+	manual_startup
 }

@@ -18,7 +18,7 @@ source "$TMW_DIR_FullTest_Modbus\\Modbus.tcl"
 source "$TMW_DIR_Lib_Modbus_Case_1\\include.tcl"
 
 
-# ####################################Utils######################################
-#
+#####################################Utils######################################
+
 variable TMW_DIR_Lib_Public_Utils "$TMW_DIR_Lib_Public\\Util"
 source "$TMW_DIR_Lib_Public_Utils\\util.tcl"
