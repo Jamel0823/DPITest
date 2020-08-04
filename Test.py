@@ -42,39 +42,44 @@ def getParaFromExcel(file, testCase):
                 tempPara = []
                 for k in range(2, rows+1):
                     ce = ws.cell(row=k, column=2)
-                    # print(ce.value)
                     if ce.value == "%s"%testCase[i][j]:
+                        # print(ce.value, testCase[i][j])
                         if len(tempPara) == 0:
+                            # print(ws.cell(row=k, column=2).value)
                             tempPara.append(ws.cell(row=k, column=2).value)
                         tempPara.append(ws.cell(row=k, column=3).value)
+                        # print(tempPara)
                         tempPara.append(ws.cell(row=k, column=4).value)
+                        # print(tempPara)
                 if len(tempPara) != 0:
                     para.append(tempPara)
+                    # print(para)
             else:
-
                 # print(case)
                 case = ws.cell(row=2, column=2).value
+                # print(case)
+                tempPara = []
                 for k in range(2, rows+1):
                     ce = ws.cell(row=k+1, column=2)
-                    # print(ce.value)
-                    # print(case)
                     if ce.value == case:
+                        # print(ce.value, case)
                         if len(tempPara) == 0:
                             tempPara.append("All")
-                            tempPara.append(ws.cell(row=k, column=2).value)
+                        tempPara.append(ws.cell(row=k, column=2).value)
                         tempPara.append(ws.cell(row=k, column=3).value)
                         tempPara.append(ws.cell(row=k, column=4).value)
                     else:
+                        # print(ce.value, case)
                         if len(tempPara) == 0:
                             tempPara.append("All")
-                            tempPara.append(ws.cell(row=k, column=2).value)
+                        tempPara.append(ws.cell(row=k, column=2).value)
                         tempPara.append(ws.cell(row=k, column=3).value)
                         tempPara.append(ws.cell(row=k, column=4).value)
                         case = ce.value
-                        if len(tempPara) != 0:
-                            para.append(tempPara)
-                        tempPara = []
-    wb.close()
+                para.append(tempPara)
+                print(para)
+
+            wb.close()
     # print(para)
     return para
 
@@ -92,7 +97,7 @@ def appendCasetoTXT(testCase):
 def appendParatoTXT(testCase, testPara):
     for i in range(0, len(testCase)):
         for j in range(2, len(testCase[i])):
-            print(testCase[i][j])
+            # print(testCase[i][j])
             fp = open("%s\\Src\\Input\\%s.txt"%(str, testCase[i][j]), "w")
             for m in range(0, len(testPara)):
                 if testPara[m][0] == testCase[i][j]:
@@ -112,7 +117,4 @@ appendParatoTXT(testCase, testPara)
 
 # os.chdir(str + "\Src\Lib\Public\Excel")
 # os.system("tclsh .\getInfor.tcl")
-# os.system(r'"C:\Program Files\Triangle MicroWorks\Protocol Test Harness\bin\tmwtest.exe"')
-
-
-
+os.system(r'"C:\Program Files\Triangle MicroWorks\Protocol Test Harness\bin\tmwtest.exe"')
