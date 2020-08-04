@@ -1,9 +1,9 @@
 Interface
 eth1
 in_file_dir
-./../Replay/Rewrite
+./../Lib/Replay/Rewrite
 TelIP
-192.168.128.100
+192.168.128.99
 User
 aaron
 Pawd

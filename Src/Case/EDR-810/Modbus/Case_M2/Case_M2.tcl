@@ -18,4 +18,4 @@ proc Run_Test_Case_M2 {{Mip} {Sip} {Channel}} {
   tmwlog insert "M2 proc is executed."
 }
 
-tmwlog insert "EDR-G9010 Case_M2.tcl is sourced."
+tmwlog insert "EDR-810 Case_M2.tcl is sourced."
