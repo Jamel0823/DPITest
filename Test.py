@@ -16,7 +16,7 @@ def getTestCaceFromExcel(file, sheet):
     rows, cols= ws.max_row, ws.max_column
     n = -1
     testCase = []
-    for i in range(1, cols):
+    for i in range(1, cols+1):
         tempItem = []
         ce = ws.cell(row=3, column=i)
         if ce.value == "V":
@@ -35,21 +35,23 @@ def getParaFromExcel(file, testCase):
     for i in range(0, len(testCase)):
         for j in range(0, len(testCase[i])):
             wb = openpyxl.load_workbook("%s"%file)
-            ws = wb["%s"%testCase[i][0]]
+            ws = wb["%s_%s"%(testCase[i][1], testCase[i][0])]
             # print(testCase[i][0])
             rows, cols= ws.max_row, ws.max_column
-            if testCase[i][j] != "All":
+            # print(testCase[i][j])
+            if testCase[i][j] != "%s_%s_All"%(testCase[i][1], testCase[i][0]):
                 tempPara = []
                 for k in range(2, rows+1):
-                    ce = ws.cell(row=k, column=2)
+                    ce = ws.cell(row=k, column=1)
                     if ce.value == "%s"%testCase[i][j]:
                         # print(ce.value, testCase[i][j])
                         if len(tempPara) == 0:
                             # print(ws.cell(row=k, column=2).value)
-                            tempPara.append(ws.cell(row=k, column=2).value)
-                        tempPara.append(ws.cell(row=k, column=3).value)
+                            tempPara.append(ws.cell(row=k, column=1).value)
+                        tempPara.append(ws.cell(row=k, column=2).value)
+                        # print(ws.cell(row=k, column=2).value)
                         # print(tempPara)
-                        tempPara.append(ws.cell(row=k, column=4).value)
+                        tempPara.append(ws.cell(row=k, column=3).value)
                         # print(tempPara)
                 if len(tempPara) != 0:
                     para.append(tempPara)
@@ -64,21 +66,20 @@ def getParaFromExcel(file, testCase):
                     if ce.value == case:
                         # print(ce.value, case)
                         if len(tempPara) == 0:
-                            tempPara.append("All")
+                            tempPara.append("%s_%s_All"%(testCase[i][1], testCase[i][0]))
+                        tempPara.append(ws.cell(row=k, column=1).value)
                         tempPara.append(ws.cell(row=k, column=2).value)
                         tempPara.append(ws.cell(row=k, column=3).value)
-                        tempPara.append(ws.cell(row=k, column=4).value)
                     else:
                         # print(ce.value, case)
                         if len(tempPara) == 0:
-                            tempPara.append("All")
+                            tempPara.append("%s_%s_All"%(testCase[i][1], testCase[i][0]))
+                        tempPara.append(ws.cell(row=k, column=1).value)
                         tempPara.append(ws.cell(row=k, column=2).value)
                         tempPara.append(ws.cell(row=k, column=3).value)
-                        tempPara.append(ws.cell(row=k, column=4).value)
                         case = ce.value
                 para.append(tempPara)
-                print(para)
-
+                # print(para)
             wb.close()
     # print(para)
     return para
@@ -105,10 +106,10 @@ def appendParatoTXT(testCase, testPara):
                         fp.write("%s\n" % testPara[m][n])
 
 
-testCase = getTestCaceFromExcel("%s\Run.xlsx"%str, "TestFunction")
+testCase = getTestCaceFromExcel("%s\\Run.xlsm"%str, "TestFunction")
 print(testCase)
-testPara = getParaFromExcel("%s\Run.xlsx"%str, testCase)
-print(testPara)
+testPara = getParaFromExcel("%s\\Run.xlsm"%str, testCase)
+# print(testPara)
 appendCasetoTXT(testCase)
 appendParatoTXT(testCase, testPara)
 

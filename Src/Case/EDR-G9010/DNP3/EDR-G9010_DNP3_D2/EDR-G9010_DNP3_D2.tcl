@@ -1,4 +1,4 @@
-proc Run_Test_Case_D2 {{Mip} {Sip} {Address}} {
+proc Run_Test_EDR-G9010_DNP3_D2 {{Mip} {Sip} {Address}} {
   # set testId "Run_Test_Case_D2"
   # MX_TMW_LOG "|---------------------------------------------------------------------|" $testId
   # MX_TMW_LOG "|ID: Run_Test_Case_D2                                                 |" $testId

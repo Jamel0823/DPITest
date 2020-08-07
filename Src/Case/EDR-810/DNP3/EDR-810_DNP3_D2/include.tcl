@@ -25,4 +25,5 @@
 # source "$TMW_DIR_Lib_Public_Log\\Log.tcl"
 
 global TMW_DIR_Case
-source "$TMW_DIR_Case\\EDR-G9010\\DNP3\\Case_D2\\Case_D2.tcl"
+source "$TMW_DIR_Case\\EDR-810\\DNP3\\EDR-810_DNP3_D2\\EDR-810_DNP3_D2.tcl"
+# puts "810D2"

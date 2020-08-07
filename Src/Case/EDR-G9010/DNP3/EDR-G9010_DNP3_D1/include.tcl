@@ -4,24 +4,26 @@
 # variable TMW_DIR_Lib_Public "$TMW_DIR_Lib\\Public"
 #
 # ####################################Lib_DNP3####################################
-# variable TMW_DIR_Lib_Modbus "$TMW_DIR_Lib\\Modbus"
-# variable TMW_DIR_Lib_Modbus_ReadCoil "$TMW_DIR_Lib_Modbus\\ReadCoil"
-# variable TMW_DIR_Lib_Modbus_Common "$TMW_DIR_Lib_Modbus\\Common"
+# variable TMW_DIR_Lib_DNP3 "$TMW_DIR_Lib\\DNP3"
+# variable TMW_DIR_Lib_DNP3_Common "$TMW_DIR_Lib_DNP3\\Common"
+# variable TMW_DIR_Lib_DNP3_BinaryInput "$TMW_DIR_Lib_DNP3\\BinaryInput"
 #
-# source "$TMW_DIR_Lib_Modbus_ReadCoil\\setCoilDB.tcl"
-# source "$TMW_DIR_Lib_Modbus_Common\\setMS.tcl"
 #
-# ####################################Lib_Public####################################
+# source "$TMW_DIR_Lib_DNP3_Common\\setMS.tcl"
+# source "$TMW_DIR_Lib_DNP3_BinaryInput\\setBISdnpDB.tcl"
+#
+# ####################################Lib_DUT####################################
 # variable TMW_DIR_Lib_DUT "$TMW_DIR_Lib\\DUT"
 # variable TMW_DIR_Lib_DUT_Firewall "$TMW_DIR_Lib_DUT\\Firewall"
 # variable TMW_DIR_Lib_DUT_Interface "$TMW_DIR_Lib_DUT\\Interface"
 #
 # source "$TMW_DIR_Lib_DUT_Interface\\setDUTNetwork.tcl"
-# source "$TMW_DIR_Lib_DUT_Firewall\\setModbusRules.tcl"
+# source "$TMW_DIR_Lib_DUT_Firewall\\setDNP3Rules.tcl"
 #
 # ####################################Lib_Excel####################################
 # variable TMW_DIR_Lib_Public_Log "$TMW_DIR_Lib_Public\\Log"
-# source "$TMW_DIR_Lib_Public_Log\\Log.tcl"
+# source "$TMW_DIR_Lib_Public_Log\\Log.tcl".
 
 global TMW_DIR_Case
-source "$TMW_DIR_Case\\EDR-810\\Modbus\\Case_M1\\Case_M1.tcl"
+source "$TMW_DIR_Case\\EDR-G9010\\DNP3\\EDR-G9010_DNP3_D1\\EDR-G9010_DNP3_D1.tcl"
+# puts "9010D1"

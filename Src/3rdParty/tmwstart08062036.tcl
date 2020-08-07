@@ -125,24 +125,21 @@ proc auto_runtest {{protocol} {dut_model} {testcases}} {
 	global TMW_DIR_Input
 	for {set i 0} {$i < [llength $testcases]} {incr i} {
 		set testcase [lindex $testcases $i]
-		if {$testcase == "$dut_model\_$protocol\_All"} {
+		if {$testcase == "$protocol\_$dut_model\_All"} {
 			set fp [open "$TMW_DIR_Input\\$testcase.txt" r]
 			set file_data [read $fp]
 			close $fp
 			set caselist ""
 			set temp ""
 			for {set c 0} {$c < [llength $file_data]} {incr c} {
-				set compare_model [lindex [split [lindex $file_data $c] "_"] 0]
-				set compare_protocol [lindex [split [lindex $file_data $c] "_"] 1]
-				set compare_case [lindex [split [lindex $file_data $c] "_"] 2]
-				if {$compare_model == $dut_model && $compare_protocol == $protocol && $compare_case != "All"} {
+				if {[regexp {"$dut_model\_$protocol"} [lindex $file_data $c]]} {
 					if {[lindex $file_data $c] != $temp } {
 						set temp [lindex $file_data $c]
 						lappend caselist [lindex $file_data $c]
 					}
 				}
 			}
-			for {set cl 0} {$cl < [llength $caselist]} {incr cl} {
+			for {set cl 1} {$cl < [llength $caselist]} {incr cl} {
 				set case [lindex $caselist $cl]
 				set all_paralist ""
 				for {set d 0} {$d < [llength $file_data]} {incr d} {
@@ -152,8 +149,7 @@ proc auto_runtest {{protocol} {dut_model} {testcases}} {
 					}
 				}
 				set testcmd "Run_Test_$case $all_paralist"
-				set caseinall [lindex [split $case "_"] end]
-				tmwlog insert "\[ OK \] Execute test case: $testcase - $caseinall"
+				tmwlog insert "\[ OK \] Execute test case: $testcase - $case"
 				eval $testcmd
 				# tmwlog insert $testcmd
 			}
@@ -241,11 +237,31 @@ if {[file exists $TMW_DIR_Input\\Run.txt]} {
 		set protocol [lindex $run_txt 0]
 		set dut_model [lindex $run_txt 1]
 		set testcase ""
+		# puts $run_txt
+		# puts $lrun_txt
+		# puts $protocol
+		# puts $dut_model
+		# puts $i
+
 		for {set j 2} {$j < $lrun_txt} {incr j} {
+			# puts "$i $j"
 			lappend testcase [lindex $run_txt $j]
 		}
+		# puts $testcase
 		auto_startup $protocol $dut_model $testcase
 	}
+	# set run_txt [lindex $file_data 0]
+	# set lrun_txt [llength $run_txt]
+	# set protocol [lindex $run_txt 0]
+	# set dut_model [lindex $run_txt 1]
+	# set testcase ""
+	# for {set i 2} {$i < $lrun_txt} {incr i} {
+	# 	lappend testcase [lindex $run_txt $i]
+	# }
+	# puts $file_data
+	# puts $run_txt
+	# puts $lfile_data
+	# auto_startup $protocol $dut_model $testcase
 } else {
 	manual_startup
 }

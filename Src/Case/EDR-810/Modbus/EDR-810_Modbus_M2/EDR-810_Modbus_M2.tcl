@@ -1,4 +1,4 @@
-proc Run_Test_Case_M2 {{Mip} {Sip} {Channel}} {
+proc Run_Test_EDR-810_Modbus_M2 {{Mip} {Sip} {Channel}} {
   # set testId "Run_Test_Case_M1"
   # MX_TMW_LOG "|---------------------------------------------------------------------|" $testId
   # MX_TMW_LOG "|ID: Run_Test_Case_M1                                                 |" $testId

@@ -24,4 +24,5 @@
 # source "$TMW_DIR_Lib_Public_Log\\Log.tcl"
 
 global TMW_DIR_Case
-source "$TMW_DIR_Case\\EDR-G9010\\Modbus\\Case_M1\\Case_M1.tcl"
+source "$TMW_DIR_Case\\EDR-810\\Modbus\\EDR-810_Modbus_M2\\EDR-810_Modbus_M2.tcl"
+# puts "810M2"

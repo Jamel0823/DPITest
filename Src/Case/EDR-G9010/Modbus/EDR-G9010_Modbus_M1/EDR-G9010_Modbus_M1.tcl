@@ -1,4 +1,4 @@
-proc Run_Test_Case_M1 {{Mip} {Sip} {Channel} {var1}} {
+proc Run_Test_EDR-G9010_Modbus_M1 {{Mip} {Sip} {Channel} {var1}} {
   # set testId "Run_Test_Case_M1"
   # MX_TMW_LOG "|---------------------------------------------------------------------|" $testId
   # MX_TMW_LOG "|ID: Run_Test_Case_M1                                                 |" $testId
@@ -19,4 +19,4 @@ proc Run_Test_Case_M1 {{Mip} {Sip} {Channel} {var1}} {
   tmwlog insert "M1 porc is executed."
 }
 
-tmwlog insert "EDR-810 Case_M1.tcl is sourced."
+tmwlog insert "EDR-G9010 Case_M1.tcl is sourced."
