@@ -70,7 +70,7 @@ proc auto_startup {{protocol} {dut_model} {testcase}} {
 					}
 					tmwlog insert "\[ OK \] Start auto test."
 					auto_srcinclude $protocol $dut_model
-					auto_runtest $testcase
+					auto_runtest $protocol $dut_model $testcase
 				}
 			}
 		} elseif {$protocol == ""} {
@@ -96,7 +96,7 @@ proc auto_startup {{protocol} {dut_model} {testcase}} {
 					}
 					tmwlog insert "\[ OK \] Start auto test."
 					auto_srcinclude $protocol $dut_model
-					auto_runtest $testcase
+					auto_runtest $protocol $dut_model $testcase
 				}
 			}
 		} elseif {$protocol == ""} {
@@ -111,6 +111,7 @@ proc auto_startup {{protocol} {dut_model} {testcase}} {
 
 proc auto_srcinclude {{protocol} {dut_model}} {
 	global TMW_DIR_Case
+	set modellist [parse_folder $TMW_DIR_Case]
 	variable TMW_DIR_TestCase "$TMW_DIR_Case\\$dut_model\\$protocol"
 	variable cfolderlist [parse_folder $TMW_DIR_TestCase]
 	set cflistlength [llength $cfolderlist]
@@ -120,18 +121,21 @@ proc auto_srcinclude {{protocol} {dut_model}} {
 	}
 }
 
-proc auto_runtest {{testcases}} {
+proc auto_runtest {{protocol} {dut_model} {testcases}} {
 	global TMW_DIR_Input
 	for {set i 0} {$i < [llength $testcases]} {incr i} {
 		set testcase [lindex $testcases $i]
-		if {$testcase == "All"} {
+		if {$testcase == "$dut_model\_$protocol\_All"} {
 			set fp [open "$TMW_DIR_Input\\$testcase.txt" r]
 			set file_data [read $fp]
 			close $fp
 			set caselist ""
 			set temp ""
 			for {set c 0} {$c < [llength $file_data]} {incr c} {
-				if {[regexp {Case} [lindex $file_data $c]]} {
+				set compare_model [lindex [split [lindex $file_data $c] "_"] 0]
+				set compare_protocol [lindex [split [lindex $file_data $c] "_"] 1]
+				set compare_case [lindex [split [lindex $file_data $c] "_"] 2]
+				if {$compare_model == $dut_model && $compare_protocol == $protocol && $compare_case != "All"} {
 					if {[lindex $file_data $c] != $temp } {
 						set temp [lindex $file_data $c]
 						lappend caselist [lindex $file_data $c]
@@ -148,9 +152,10 @@ proc auto_runtest {{testcases}} {
 					}
 				}
 				set testcmd "Run_Test_$case $all_paralist"
-				tmwlog insert "\[ OK \] Execute test case: $testcase - $case"
+				set caseinall [lindex [split $case "_"] end]
+				tmwlog insert "\[ OK \] Execute test case: $testcase - $caseinall"
 				eval $testcmd
-				# tmwlog insert $runtestcmd
+				# tmwlog insert $testcmd
 			}
 		} else {
 			set fp [open "$TMW_DIR_Input\\$testcase.txt" r]
@@ -163,7 +168,7 @@ proc auto_runtest {{testcases}} {
 			set runtestcmd "Run_Test_$testcase $uni_paralist"
 			tmwlog insert "\[ OK \] Execute test case: $testcase"
 			eval $runtestcmd
-			# tmwlog insert $runtestcmd
+			# tmwlog insert $testcmd
 		}
 	}
 }
@@ -228,16 +233,19 @@ proc develop_mode {{name}} {
 if {[file exists $TMW_DIR_Input\\Run.txt]} {
 	set fp [open "$TMW_DIR_Input\\Run.txt" r]
 	set file_data [read $fp]
-	set run_txt [lindex $file_data 0]
-	set lrun_txt [llength $run_txt]
-	set protocol [lindex $run_txt 0]
-	set dut_model [lindex $run_txt 1]
-	set testcase ""
-	for {set i 2} {$i < $lrun_txt} {incr i} {
-		lappend testcase [lindex $run_txt $i]
-	}
+	set lfile_data [llength $file_data]
 	close $fp
-	auto_startup $protocol $dut_model $testcase
+	for {set i 0} {$i < $lfile_data} {incr i} {
+		set run_txt [lindex $file_data $i]
+		set lrun_txt [llength $run_txt]
+		set protocol [lindex $run_txt 0]
+		set dut_model [lindex $run_txt 1]
+		set testcase ""
+		for {set j 2} {$j < $lrun_txt} {incr j} {
+			lappend testcase [lindex $run_txt $j]
+		}
+		auto_startup $protocol $dut_model $testcase
+	}
 } else {
 	manual_startup
 }
