@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="92aa051c-1984-4846-9071-b331baf2ce39" name="Default Changelist" comment="" />
+    <list default="true" id="92aa051c-1984-4846-9071-b331baf2ce39" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/Run.xlsm" beforeDir="false" afterPath="$PROJECT_DIR$/Run.xlsm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/~$Run.xlsx" beforeDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
