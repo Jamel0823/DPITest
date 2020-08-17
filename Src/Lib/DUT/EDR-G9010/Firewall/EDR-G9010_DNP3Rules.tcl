@@ -1,0 +1,3 @@
+proc setBinayInputFilter {} {
+  puts "setBinayInputFilter"
+}
