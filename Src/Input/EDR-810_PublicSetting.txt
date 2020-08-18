@@ -1,0 +1,12 @@
+Nic1_Ip
+810P1-1
+Nic2_Ip
+810P1-2
+Nic1_Gateway
+810P1-3
+Nic2_Gateway
+810P1-4
+Com
+810P1-5
+ReloadTime
+810P1-6

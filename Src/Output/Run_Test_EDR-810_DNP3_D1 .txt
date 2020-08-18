@@ -1,0 +1,9 @@
+[Aug 17 18:03:15.863][MOXA]ID: Run_Test_EDR-810_DNP3_D1
+[Aug 17 18:03:15.878][MOXA]Title: Check DNP3 function case 1: Read Binary Input
+[Aug 17 18:03:15.878][MOXA]Purpose: Test DNP3 function case 1 can be filtered by DNP3 FW
+[Aug 17 18:03:15.878][MOXA]Criteria: DNP3 Master should recevied correct response.
+[Aug 17 18:03:15.878][MOXA]Description:
+[Aug 17 18:03:15.878][MOXA]#proc: connect to DUT via 6
+[Aug 17 18:03:16.175][MOXA]#proc: opendnpmaster 192.168.127.49
+[Aug 17 18:03:16.222][MOXA]#proc: opendnpslave
+[Aug 17 18:03:16.222][MOXA]#proc: set DUT Lan interface 192.168.129.49

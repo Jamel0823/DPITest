@@ -5,6 +5,12 @@
 # You may not, except with our express written permission, distribute or exploit the content.
 #
 
+proc OPEN_MX_TMW_LOG_FILE {{id ""}} {
+	global TMW_DIR_Output
+	set filename "$TMW_DIR_Output\\$id.txt"
+	set fileId [open $filename "w+"]
+}
+
 proc MX_TMW_LOG {{log ""} {id ""}} {
 	set output "\[[tmwlog getCurrentTime bdata varName]\]\[MOXA\]$log"
 	tmwlog insert $output
@@ -16,7 +22,7 @@ proc MX_TMW_LOG {{log ""} {id ""}} {
 
 proc MX_TMW_LOG_FILE {{log ""} {id ""}} {
 	global TMW_DIR_Output
-	set filename "$TMW_DIR_Output\\$id.log"
+	set filename "$TMW_DIR_Output\\$id.txt"
 	set fileId [open $filename "a+"]
 	puts $fileId $log
 	flush $fileId

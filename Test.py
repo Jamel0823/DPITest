@@ -115,7 +115,7 @@ def getPublicSettingFromExcel(file, testCase):
         rows, cols = ws.max_row, ws.max_column
         tempPara = []
         tempPara.append(ws.cell(row=2, column=1).value)
-        for k in range(2, rows):
+        for k in range(2, rows+1):
             tempPara.append(ws.cell(row=k, column=2).value)
             tempPara.append(ws.cell(row=k, column=3).value)
         para.append(tempPara)
@@ -126,6 +126,7 @@ def getPublicSettingFromExcel(file, testCase):
         fp = open("%s\\Src\\Input\\%s.txt" % (str, para[i][0]), "w")
         for j in range(1, len(para[i])):
             fp.write("%s\n" % para[i][j])
+
 testCase = getTestCaceFromExcel("%s\\Run.xlsm"%str, "TestFunction")
 # print(testCase)
 getPublicSettingFromExcel("%s\\Run.xlsm"%str, testCase)
@@ -139,4 +140,5 @@ appendParatoTXT(testCase, testPara)
 
 # os.chdir(str + "\Src\Lib\Public\Excel")
 # os.system("tclsh .\getInfor.tcl")
-# os.system(r'"C:\Program Files\Triangle MicroWorks\Protocol Test Harness\bin\tmwtest.exe"')
+os.system(r'"C:\Program Files\Triangle MicroWorks\Protocol Test Harness\bin\tmwtest.exe"')
+
