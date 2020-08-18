@@ -1,0 +1,12 @@
+Nic1_Ip
+IEFP1-1
+Nic2_Ip
+IEFP1-2
+Nic1_Gateway
+IEFP1-3
+Nic2_Gateway
+IEFP1-4
+Com
+IEFP1-5
+ReloadTime
+IEFP1-6

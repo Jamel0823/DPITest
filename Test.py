@@ -10,6 +10,8 @@ from openpyxl.styles import Border, Side, PatternFill, Font, GradientFill, Align
 str = os.path.abspath(__file__)
 str = str[0:-8]
 
+
+
 def getTestCaceFromExcel(file, sheet):
     wb = openpyxl.load_workbook("%s"%file)
     ws = wb["%s"%sheet]
@@ -105,9 +107,29 @@ def appendParatoTXT(testCase, testPara):
                     for n in range(1, len(testPara[m])):
                         fp.write("%s\n" % testPara[m][n])
 
+def getPublicSettingFromExcel(file, testCase):
+    wb = openpyxl.load_workbook("%s"%file)
+    para = []
+    for i in range(0, len(testCase)):
+        ws = wb["%s_PublicSetting"%testCase[i][1]]
+        rows, cols = ws.max_row, ws.max_column
+        tempPara = []
+        tempPara.append(ws.cell(row=2, column=1).value)
+        for k in range(2, rows+1):
+            tempPara.append(ws.cell(row=k, column=2).value)
+            tempPara.append(ws.cell(row=k, column=3).value)
+        para.append(tempPara)
+    s = set(tuple(l) for l in para)
+    para = [list(t) for t in s]
+    print(para)
+    for i in range(0, len(para)):
+        fp = open("%s\\Src\\Input\\%s.txt" % (str, para[i][0]), "w")
+        for j in range(1, len(para[i])):
+            fp.write("%s\n" % para[i][j])
 
 testCase = getTestCaceFromExcel("%s\\Run.xlsm"%str, "TestFunction")
-print(testCase)
+# print(testCase)
+getPublicSettingFromExcel("%s\\Run.xlsm"%str, testCase)
 testPara = getParaFromExcel("%s\\Run.xlsm"%str, testCase)
 # print(testPara)
 appendCasetoTXT(testCase)
@@ -119,3 +141,4 @@ appendParatoTXT(testCase, testPara)
 # os.chdir(str + "\Src\Lib\Public\Excel")
 # os.system("tclsh .\getInfor.tcl")
 os.system(r'"C:\Program Files\Triangle MicroWorks\Protocol Test Harness\bin\tmwtest.exe"')
+

@@ -1,0 +1,12 @@
+AtIP
+192.168.128.99
+TelIP
+192.168.128.99
+User
+aaron
+Pswd
+adminmoxa
+Type
+ips
+Interface
+eth1

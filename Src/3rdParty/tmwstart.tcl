@@ -22,6 +22,13 @@ variable TMW_DIR_Lib "$TMW_DIR_Src\\Lib"
 variable TMW_DIR_Case "$TMW_DIR_Src\\Case"
 
 source "$TMW_DIR_Lib\\Public\\Util\\util.tcl"
+# [Nic1_IP "192.168.127.99" Nic2_IP "192.168.128.99" Nic1_Gateway "192.168.127.254" Nic2_Gateway "192.168.128.254" Com "6" ReloadTime "300"
+set EDR_810_PBPara ""
+lappend EDR_810_PBPara "Nic1_IP"
+lappend EDR_810_PBPara "192.168.127.99"
+lappend EDR_810_PBPara "Com"
+lappend EDR_810_PBPara "6"
+
 
 ##########
 
